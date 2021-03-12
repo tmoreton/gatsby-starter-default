@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
 import auth0 from "auth0-js"
 import { navigate } from "gatsby"
 
-class Auth extends Component {
+class Auth {
   constructor() {
     this.auth0 = new auth0.WebAuth({
       domain: process.env.GATSBY_AUTH0_DOMAIN,
