@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { updateAgentId } from '../actions/user'
 import { navigate } from 'gatsby'
 import Layout from '../components/layout'
+import auth0Client from '../utils/auth'
 import { showError } from '../actions/error'
 import isRetail from '../utils/isRetail'
 
@@ -28,18 +29,20 @@ class Login extends Component {
     if(loggedIn && isRetail(channel_code)){
       navigate("/clock-in")
     }
-  	if(loggedIn){
-  		navigate("/address")
-  	}
+    if(loggedIn){
+      navigate("/address")
+    }
   }
 
   handleLogin = (e) => {
-  	const { agent_id, password } = this.state
+    const { agent_id, password } = this.state
     e.preventDefault()
     if(!agent_id) {
       this.props.showError("Missing Agent ID")
     } else if (!password) {
       this.props.showError("Missing Password")
+    } else {
+      auth0Client.loginAuth(agent_id, password)
     }
   }
 
@@ -56,7 +59,7 @@ class Login extends Component {
 
   render() {
     return (
-    	<Layout>
+      <Layout>
         <div className="col-md-4 mx-auto">
           <form>
             <div className="form-group text-left">
@@ -71,7 +74,7 @@ class Login extends Component {
           </form>
           <p className="text-center pt-3"><small>Version 0.2.17</small></p>
         </div>
-	    </Layout>
+      </Layout>
     )
   }
 }
