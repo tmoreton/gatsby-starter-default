@@ -1,6 +1,6 @@
 import React from "react"
-// import Login from "./login"
+import Login from "./login"
 
-const IndexPage = () => <p>hello</p>
+const IndexPage = () => <Login/>
 
 export default IndexPage
