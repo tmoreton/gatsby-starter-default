@@ -1,16 +1,16 @@
+import React, { Component } from 'react'
 import auth0 from "auth0-js"
 import { navigate } from "gatsby"
 
-class Auth {
+class Auth extends Component {
   constructor() {
-    const isBrowser = typeof window !== "undefined"
-    this.auth0 = isBrowser ? new auth0.WebAuth({
+    this.auth0 = new auth0.WebAuth({
       domain: process.env.GATSBY_AUTH0_DOMAIN,
       clientID: process.env.GATSBY_AUTH0_CLIENT_ID,
       redirectUri: process.env.GATSBY_AUTH0_REDIRECT_URI,
       responseType: 'token id_token',
       scope: 'openid profile email offline_access',
-    }) : {}
+    }) || {}
   }
 
   loginAuth = (agent_id, password) => {
