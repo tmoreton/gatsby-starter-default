@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import { updateAgentId } from '../actions/user'
 import { navigate } from 'gatsby'
 import Layout from '../components/layout'
-import auth0Client from '../utils/auth'
 import { showError } from '../actions/error'
 import isRetail from '../utils/isRetail'
 
@@ -41,8 +40,6 @@ class Login extends Component {
       this.props.showError("Missing Agent ID")
     } else if (!password) {
       this.props.showError("Missing Password")
-    } else {
-      auth0Client.loginAuth(agent_id, password)
     }
   }
 
