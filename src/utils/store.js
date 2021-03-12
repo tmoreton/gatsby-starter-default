@@ -3,7 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
-// import rootReducer from '../reducers/root'
+import rootReducer from '../reducers/root'
 import interceptor from './interceptor'
 
 const persistConfig = {
@@ -11,7 +11,7 @@ const persistConfig = {
   storage,
 }
 
-const persistedReducer = persistReducer(persistConfig)
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 interceptor()
 
